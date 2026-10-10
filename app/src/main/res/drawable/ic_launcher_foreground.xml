@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Left figure / left half of the embracing heart -->
+    <path
+        android:fillColor="#F4519A"
+        android:pathData="M54,81 C45,74 30,64 25,54 C20,44 26,35 36,34 C44,33 50,38 54,46 L54,81 Z" />
+
+    <!-- Right figure / right half of the embracing heart -->
+    <path
+        android:fillColor="#7662F5"
+        android:pathData="M54,81 C63,74 78,64 83,54 C88,44 82,35 72,34 C64,33 58,38 54,46 L54,81 Z" />
+
+    <!-- Soft highlights on both curved sides -->
+    <path
+        android:fillColor="#55FFFFFF"
+        android:pathData="M28,49 C27,43 32,38 37,38 C43,38 48,42 51,48 C45,44 39,42 34,45 C31,46 29,48 28,49 Z" />
+    <path
+        android:fillColor="#33FFFFFF"
+        android:pathData="M80,49 C81,43 76,38 71,38 C65,38 60,42 57,48 C63,44 69,42 74,45 C77,46 79,48 80,49 Z" />
+
+    <!-- Heads -->
+    <path
+        android:fillColor="#FF78AE"
+        android:pathData="M45,26 C45,29.314 42.314,32 39,32 C35.686,32 33,29.314 33,26 C33,22.686 35.686,20 39,20 C42.314,20 45,22.686 45,26 Z" />
+    <path
+        android:fillColor="#8D7CFF"
+        android:pathData="M75,26 C75,29.314 72.314,32 69,32 C65.686,32 63,29.314 63,26 C63,22.686 65.686,20 69,20 C72.314,20 75,22.686 75,26 Z" />
+
+    <!-- White heart-shaped space in the middle -->
+    <path
+        android:fillColor="#FFFFFB"
+        android:pathData="M54,69 C49,65 42,59 42,53 C42,48 48,46 54,52 C60,46 66,48 66,53 C66,59 59,65 54,69 Z" />
+
+    <!-- Small pink heart at the center -->
+    <path
+        android:fillColor="#F13E8A"
+        android:pathData="M54,64 C51,61.5 46,57.5 46,53.5 C46,50.2 50.5,49 54,53 C57.5,49 62,50.2 62,53.5 C62,57.5 57,61.5 54,64 Z" />
+</vector>

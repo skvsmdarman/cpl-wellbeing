@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1060464326777",
+    "project_id": "ai-character-60074",
+    "storage_bucket": "ai-character-60074.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1060464326777:android:6ab12d94fb2ed90565fca8",
+        "android_client_info": {
+          "package_name": "com.example.cplswellbeingbynovadevs"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyjVPgkX0Du8mJzalepu9YXLZkkmeoo0s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
