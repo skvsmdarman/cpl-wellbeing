@@ -23,6 +23,15 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        create("release") {
+            storeFile = file("${rootDir}/cpl_release.jks")
+            storePassword = "cplwellbeingpass"
+            keyAlias = "cplkey"
+            keyPassword = "cplwellbeingpass"
+        }
+    }
+
     lint {
         checkReleaseBuilds = false
         abortOnError = false
@@ -38,6 +47,7 @@ android {
         }
         release {
             isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("release")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
