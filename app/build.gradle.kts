@@ -29,6 +29,10 @@ android {
             storePassword = "cplwellbeingpass"
             keyAlias = "cplkey"
             keyPassword = "cplwellbeingpass"
+            enableV1Signing = true
+            enableV2Signing = true
+            enableV3Signing = true
+            enableV4Signing = true
         }
     }
 
@@ -44,6 +48,7 @@ android {
     buildTypes {
         debug {
             isDebuggable = true
+            signingConfig = signingConfigs.getByName("release")
         }
         release {
             isMinifyEnabled = false
