@@ -1,6 +1,7 @@
 package com.example.cplswellbeingbynovadevs.ui.permission
 
 import android.content.Intent
+import android.net.Uri
 import android.provider.Settings
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -100,8 +101,16 @@ fun UsagePermissionScreen(
 
                 Button(
                     onClick = {
-                        val intent = Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS)
-                        context.startActivity(intent)
+                        try {
+                            val intent = Intent(
+                                Settings.ACTION_USAGE_ACCESS_SETTINGS,
+                                Uri.parse("package:${context.packageName}")
+                            )
+                            context.startActivity(intent)
+                        } catch (e: Exception) {
+                            val intent = Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS)
+                            context.startActivity(intent)
+                        }
                     },
                     modifier = Modifier
                         .fillMaxWidth()

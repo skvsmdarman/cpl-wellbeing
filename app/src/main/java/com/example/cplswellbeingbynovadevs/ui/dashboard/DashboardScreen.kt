@@ -1,5 +1,8 @@
 package com.example.cplswellbeingbynovadevs.ui.dashboard
 
+import android.content.Intent
+import android.net.Uri
+import android.provider.Settings
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -26,7 +29,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BatteryChargingFull
 import androidx.compose.material.icons.filled.BatteryFull
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Security
 import androidx.compose.material.icons.filled.SignalCellularAlt
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -50,6 +56,7 @@ import androidx.compose.ui.unit.sp
 import com.example.cplswellbeingbynovadevs.data.model.ConnectedPartner
 import com.example.cplswellbeingbynovadevs.data.model.UsageDaily
 import com.example.cplswellbeingbynovadevs.data.remote.SupabaseClient
+import com.example.cplswellbeingbynovadevs.service.UsageStatsHelper
 import com.example.cplswellbeingbynovadevs.ui.theme.StatusOnlineGreen
 
 @Composable
@@ -68,6 +75,7 @@ fun DashboardScreen(
 
     LaunchedEffect(Unit) {
         viewModel.updateMyBattery(context)
+        viewModel.loadData()
     }
 
     val currentUserName = SupabaseClient.currentUserEmail?.substringBefore("@") ?: "Me"
@@ -119,6 +127,59 @@ fun DashboardScreen(
                             modifier = Modifier.size(24.dp),
                             color = MaterialTheme.colorScheme.primary
                         )
+                    }
+                }
+            }
+
+            if (!UsageStatsHelper.hasUsagePermission(context)) {
+                item {
+                    Card(
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(22.dp),
+                        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.errorContainer)
+                    ) {
+                        Column(modifier = Modifier.padding(18.dp)) {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Icon(
+                                    imageVector = Icons.Default.Security,
+                                    contentDescription = "Warning",
+                                    tint = MaterialTheme.colorScheme.error,
+                                    modifier = Modifier.size(24.dp)
+                                )
+                                Spacer(modifier = Modifier.width(8.dp))
+                                Text(
+                                    text = "Usage Access Required",
+                                    style = MaterialTheme.typography.titleMedium,
+                                    fontWeight = FontWeight.Bold,
+                                    color = MaterialTheme.colorScheme.onErrorContainer
+                                )
+                            }
+                            Spacer(modifier = Modifier.height(6.dp))
+                            Text(
+                                text = "Grant Usage Access in Android Settings so CPL Wellbeing can calculate screen time.",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onErrorContainer
+                            )
+                            Spacer(modifier = Modifier.height(12.dp))
+                            Button(
+                                onClick = {
+                                    try {
+                                        val intent = Intent(
+                                            Settings.ACTION_USAGE_ACCESS_SETTINGS,
+                                            Uri.parse("package:${context.packageName}")
+                                        )
+                                        context.startActivity(intent)
+                                    } catch (e: Exception) {
+                                        val intent = Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS)
+                                        context.startActivity(intent)
+                                    }
+                                },
+                                shape = RoundedCornerShape(14.dp),
+                                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error)
+                            ) {
+                                Text("Enable Usage Access", fontWeight = FontWeight.Bold)
+                            }
+                        }
                     }
                 }
             }
